@@ -17,8 +17,16 @@
     --text-dim:#9FB4BE;
     --text-bright:#F4EFE6;
     --radius:2px;
-	
   }
+
+  body[data-theme="light"]{
+    --ink:#F4EFE6;
+    --panel:#FFFFFF;
+    --grid-line:#D8CFBE;
+    --text-dim:#5B6B72;
+    --text-bright:#0B1D26;
+  }
+  body[data-theme="light"] .schematic .node{fill:var(--panel);}
 
   *{margin:0;padding:0;box-sizing:border-box;}
 
@@ -38,7 +46,31 @@
     color:var(--text-bright);
     font-family:'IBM Plex Sans', sans-serif;
     line-height:1.6;
+    transition:background-color 0.25s, color 0.25s;
   }
+
+  .theme-toggle{
+    background:none;border:1px solid var(--grid-line);color:var(--text-bright);
+    width:34px;height:34px;border-radius:var(--radius);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:0.95rem;
+    transition:border-color 0.2s, color 0.2s;
+  }
+  .theme-toggle:hover{border-color:var(--amber);color:var(--amber);}
+
+  .avatar{
+    width:88px;height:88px;border-radius:50%;
+    background:var(--panel);border:2px solid var(--copper);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.6rem;
+    color:var(--amber);flex-shrink:0;
+    overflow:hidden;
+  }
+  .avatar img{
+    width:100%;height:100%;object-fit:cover;border-radius:50%;
+  }
+  .about-header{display:flex;align-items:center;gap:18px;margin-bottom:24px;}
+  .about-header .name{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:600;}
+  .about-header .role{font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--text-dim);}
 
   a{color:inherit;text-decoration:none;}
 
@@ -288,6 +320,7 @@
       <a href="#contact">Contact</a>
       <a href="https://github.com/adeolumesogboriwon1-ux" target="_blank" rel="noopener">GitHub</a>
     </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">◐</button>
   </nav>
 </header>
 
@@ -334,7 +367,7 @@
 <section class="section" id="log">
   <div class="section-head">
     <h2>Field Log</h2>
-    <div class="tag mono" id="resultCount">6 entries</div>
+    <div class="tag mono" id="resultCount">12 entries</div>
   </div>
 
   <div class="controls">
@@ -350,6 +383,13 @@
 
 <section class="section" id="about">
   <div class="section-head"><h2>About</h2><div class="tag mono">Bio</div></div>
+  <div class="about-header">
+    <div class="avatar"><img src="images/adeolu-pics.jpg" alt="Mesogboriwon Adeolu"></div>
+    <div>
+      <div class="name">Mesogboriwon Adeolu</div>
+      <div class="role">Chemical Engineer → Data &amp; Analytics</div>
+    </div>
+  </div>
   <div class="about-grid">
     <div>
       <p>I hold a B.Eng. in Chemical Engineering from FUPRE and built my early career in industrial automation and production supervision — including NYSC service and later a Production Supervisor role at Industrial Projects International Nig Ltd, plus internship experience at NPDC (OML 111).</p>
@@ -373,7 +413,7 @@
       <p>Open to data science, analytics, and automation opportunities.</p>
     </div>
     <div class="contact-links">
-      <a class="btn btn-solid" href="mailto:you@example.com">Email me</a>
+      <a class="btn btn-solid" href="mailto:Adeolumesogboriwon20@gmail.com">Email me</a>
       <a class="btn btn-outline" href="https://linkedin.com/in/adeolu-mesogboriwon" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn btn-outline" href="https://github.com/adeolumesogboriwon1-ux" target="_blank" rel="noopener">GitHub</a>
     </div>
@@ -472,6 +512,80 @@ const posts = [
       "One of the more underrated data-adjacent skills I've built recently is pattern-matching my own experience against very different job descriptions — Shell's CAR framework, Mondelēz's digitalization focus, Rite Foods' bakery operations — and rewriting the same core achievements to fit each.",
       "It's a good reminder that a portfolio isn't one fixed document. It's a dataset you query differently depending on who's asking."
     ]
+  },
+  {
+    id: "LOG_007",
+    title: "Five SQL portfolio projects, one MySQL Workbench window",
+    date: "2026-04-03",
+    category: "Data Science",
+    excerpt: "Sales analytics, churn, hospital readmissions, fraud, and job market data — all built as a sequential SQL series in MySQL Workbench.",
+    tags: ["sql", "mysql", "portfolio"],
+    body: [
+      "I set out to build five SQL projects back to back, all in MySQL Workbench, to force consistency in syntax and style: Sales Performance Analytics, Customer Churn and Retention, Hospital Patient Readmission, Fraud Detection, and Job Market & Salary Insights.",
+      "Working through them sequentially meant each one got a little sharper — better use of CTEs and window functions, cleaner joins, and queries written with MySQL's own syntax (CAST, DATE_FORMAT, LOAD DATA INFILE) rather than dialects I'd half-remembered from documentation examples.",
+      "The throughline across all five is the same one from my engineering days: define the question precisely before you touch the data, or you'll optimize the wrong thing."
+    ]
+  },
+  {
+    id: "LOG_008",
+    title: "Building a full-stack e-commerce platform from scratch",
+    date: "2026-04-20",
+    category: "Data Science",
+    excerpt: "React on the front end, Node.js and Express underneath, MongoDB for storage, Stripe for checkout — my first full-stack build, pushed to GitHub project by project.",
+    tags: ["react", "node", "mongodb", "web-dev"],
+    body: [
+      "After a run of data-analysis projects, I wanted a build where I owned the whole stack — so I started an e-commerce platform: React for the interface, Node.js and Express for the API layer, MongoDB for product and order data, and Stripe wired in for real checkout flows.",
+      "I'm pushing it to GitHub project by project rather than as one final drop, partly for the commit history and partly because it forces me to ship working slices instead of an all-or-nothing build.",
+      "It's the closest thing to plant commissioning I've done outside a plant — get the core system running end to end first, then instrument and improve each stage."
+    ]
+  },
+  {
+    id: "LOG_009",
+    title: "A Sales Performance Dashboard, from Python to Power BI",
+    date: "2026-01-28",
+    category: "Data Science",
+    excerpt: "Cleaning and modeling in Python, then handing the story off to Power BI for the part that actually gets looked at in a meeting.",
+    tags: ["python", "power-bi", "dashboard"],
+    body: [
+      "This project split cleanly into two halves: Python for the heavy lifting — cleaning, aggregating, and shaping the sales data — and Power BI for the layer people actually interact with, where the numbers become a story someone can act on in five minutes.",
+      "It reinforced something I hadn't fully appreciated coming from engineering: the analysis is only half the job. The other half is presenting it so a non-technical stakeholder can make a decision without needing to understand the pipeline behind it."
+    ]
+  },
+  {
+    id: "LOG_010",
+    title: "Predicting hospital readmissions at ~89% accuracy",
+    date: "2026-02-25",
+    category: "Data Science",
+    excerpt: "100,000 patient records, a classification model, and a reminder that in healthcare, a false negative is never just a metric.",
+    tags: ["python", "healthcare", "machine-learning"],
+    body: [
+      "This model predicts whether a patient is likely to be readmitted, trained on around 100,000 records and landing near 89% accuracy after feature selection and tuning.",
+      "Healthcare data raises the stakes on something I already cared about from process work: understanding what a miss actually costs. A missed readmission risk isn't a rounding error — it's a real patient outcome — so I spent as much time on evaluation and error analysis as I did on the model itself."
+    ]
+  },
+  {
+    id: "LOG_011",
+    title: "What the FGN-NITDA 3MTT programme actually changed",
+    date: "2025-11-08",
+    category: "Career",
+    excerpt: "Structured Data Science & AI training gave shape to skills I'd already started teaching myself informally.",
+    tags: ["3mtt", "training", "career"],
+    body: [
+      "Before enrolling in the FGN-NITDA 3MTT Data Science & AI programme, I was learning in a fairly scattered way — a tutorial here, a dataset there. The structure of a formal programme forced a more disciplined path through the fundamentals: statistics, data cleaning, model evaluation, and the workflow discipline that separates a real project from a notebook that only runs on my machine.",
+      "It also gave me a peer group going through the same transition, which turned out to matter as much as the curriculum — engineering was a fairly solitary shift until then."
+    ]
+  },
+  {
+    id: "LOG_012",
+    title: "Stacking a TEFL certification and a Mechatronics diploma",
+    date: "2025-10-15",
+    category: "Career",
+    excerpt: "Keeping career options genuinely open while the data science path takes shape.",
+    tags: ["tefl", "mechatronics", "career"],
+    body: [
+      "Alongside the data and engineering work, I'm completing a TEFL certification and a Mechatronics diploma, both expected in 2026. Neither is a hedge against the data science path — they're deliberate breadth: TEFL keeps remote teaching and tutoring open as an income stream, and Mechatronics deepens the automation side of my engineering background.",
+      "I've learned not to apologize for a varied CV. In a market this competitive, optionality is a strategy, not a lack of focus."
+    ]
   }
 ];
 
@@ -569,6 +683,22 @@ searchInput.addEventListener('input', (e) => {
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+/* theme toggle */
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+function applyTheme(theme){
+  body.setAttribute('data-theme', theme);
+  themeToggle.textContent = theme === 'light' ? '◑' : '◐';
+}
+let savedTheme = 'dark';
+try{ savedTheme = localStorage.getItem('portfolio-theme') || 'dark'; }catch(e){}
+applyTheme(savedTheme);
+themeToggle.addEventListener('click', () => {
+  const next = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  applyTheme(next);
+  try{ localStorage.setItem('portfolio-theme', next); }catch(e){}
+});
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
