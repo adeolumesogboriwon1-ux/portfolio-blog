@@ -286,6 +286,25 @@
   /* ===== ABOUT ===== */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
   @media (max-width:720px){.about-grid{grid-template-columns:1fr;}}
+
+  /* ===== PROJECTS ===== */
+  .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media (max-width:860px){.projects-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.projects-grid{grid-template-columns:1fr;}}
+
+  .project-card{
+    background:var(--panel);border:1px solid var(--grid-line);border-radius:var(--radius);
+    padding:20px;display:flex;flex-direction:column;gap:10px;
+    transition:border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover{border-color:var(--copper);transform:translateY(-2px);}
+  .project-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.02rem;font-weight:600;line-height:1.3;}
+  .project-card p{color:var(--text-dim);font-size:0.85rem;flex-grow:1;}
+  .project-link{
+    font-family:'IBM Plex Mono',monospace;font-size:0.76rem;color:var(--amber);
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .project-link:hover{color:var(--copper);}
   .about-grid p{color:var(--text-dim);margin-bottom:14px;}
   .stat-row{display:flex;gap:28px;margin-top:24px;flex-wrap:wrap;}
   .stat{border-left:2px solid var(--copper);padding-left:12px;}
@@ -316,6 +335,7 @@
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="#log">Field Log</a>
+      <a href="#projects">Projects</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="https://github.com/adeolumesogboriwon1-ux" target="_blank" rel="noopener">GitHub</a>
@@ -381,10 +401,71 @@
   <div class="grid" id="postGrid"></div>
 </section>
 
+<section class="section" id="projects">
+  <div class="section-head"><h2>Projects</h2><div class="tag mono">GitHub repos</div></div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <h3>Customer Churn Prediction</h3>
+      <p>Random Forest classifier on 7,043 telecom customer records, ~79% accuracy.</p>
+      <a class="project-link" href="https://github.com/adeolumesogboriwon1-ux/churn-prediction" target="_blank" rel="noopener">View repo →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Credit Card Fraud Detection</h3>
+      <p>SMOTE-balanced classification across ~284K transactions, ~86% recall.</p>
+      <a class="project-link" href="https://github.com/adeolumesogboriwon1-ux/fraud-detection" target="_blank" rel="noopener">View repo →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Hospital Readmission Prediction</h3>
+      <p>Classification model on ~100K patient records, ~89% accuracy.</p>
+      <a class="project-link" href="https://github.com/adeolumesogboriwon1-ux/healthcare_readmission" target="_blank" rel="noopener">View repo →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Sales Performance Dashboard</h3>
+      <p>Python for data prep, Power BI for the interactive reporting layer.</p>
+      <a class="project-link" href="https://github.com/adeolumesogboriwon1-ux/sales-dashboard" target="_blank" rel="noopener">View repo →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Job Market &amp; Salary Analysis</h3>
+      <p>Salary and skill-demand trends across roughly 9,355 job postings.</p>
+      <a class="project-link" href="https://github.com/adeolumesogboriwon1-ux/jobs-salary-analysis" target="_blank" rel="noopener">View repo →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>E-Commerce Platform</h3>
+      <p>Full-stack build: React, Node.js, Express, MongoDB, Stripe checkout.</p>
+      <a class="project-link" href="https://github.com/adeolumesogboriwon1-ux/ecommerce-store" target="_blank" rel="noopener">View repo →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>SaaS Dashboard</h3>
+      <p>Interactive dashboard interface for SaaS-style metrics and reporting.</p>
+      <a class="project-link" href="https://github.com/adeolumesogboriwon1-ux/saas-dashboard" target="_blank" rel="noopener">View repo →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Data Analysis Portfolio</h3>
+      <p>Collected analysis notebooks and exploratory data work.</p>
+      <a class="project-link" href="https://github.com/adeolumesogboriwon1-ux/data-analysis-portfolio" target="_blank" rel="noopener">View repo →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>This Portfolio Site</h3>
+      <p>The blog you're reading right now — HTML, CSS &amp; JS, no framework.</p>
+      <a class="project-link" href="https://github.com/adeolumesogboriwon1-ux/portfolio-blog" target="_blank" rel="noopener">View repo →</a>
+    </div>
+
+  </div>
+</section>
+
 <section class="section" id="about">
   <div class="section-head"><h2>About</h2><div class="tag mono">Bio</div></div>
   <div class="about-header">
-    <div class="avatar"><img src="Images/adeolu-pics.jpg" alt="M. Adeolu"></div>
+    <div class="avatar"><img src="Images/adeolu-pics.jpg" alt="Mesogboriwon Adeolu"></div>
     <div>
       <div class="name">Mesogboriwon Adeolu</div>
       <div class="role">Chemical Engineer → Data &amp; Analytics</div>
@@ -414,6 +495,7 @@
     </div>
     <div class="contact-links">
       <a class="btn btn-solid" href="mailto:Adeolumesogboriwon20@gmail.com">Email me</a>
+      <a class="btn btn-outline" href="Mesogboriwon-Adeolu-CV.pdf" download>Download CV ↓</a>
       <a class="btn btn-outline" href="https://linkedin.com/in/adeolu-mesogboriwon" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn btn-outline" href="https://github.com/adeolumesogboriwon1-ux" target="_blank" rel="noopener">GitHub</a>
     </div>
