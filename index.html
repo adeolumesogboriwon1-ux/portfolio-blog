@@ -320,6 +320,21 @@
   .contact-box p{color:var(--text-dim);}
   .contact-links{display:flex;gap:14px;flex-wrap:wrap;}
 
+  .cv-dropdown{position:relative;}
+  .cv-menu{
+    display:none;position:absolute;top:calc(100% + 8px);left:0;
+    background:var(--panel);border:1px solid var(--grid-line);border-radius:var(--radius);
+    min-width:220px;padding:6px;z-index:20;
+    box-shadow:0 8px 24px rgba(0,0,0,0.3);
+  }
+  .cv-menu.open{display:block;}
+  .cv-menu a{
+    display:block;padding:10px 12px;border-radius:var(--radius);
+    font-family:'IBM Plex Mono',monospace;font-size:0.82rem;color:var(--text-bright);
+  }
+  .cv-menu a:hover{background:var(--copper);color:var(--ink);}
+  .cv-menu .cv-empty{padding:10px 12px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:0.8rem;}
+
   footer{
     border-top:1px solid var(--grid-line);
     padding:28px 24px;text-align:center;
@@ -495,7 +510,10 @@
     </div>
     <div class="contact-links">
       <a class="btn btn-solid" href="mailto:Adeolumesogboriwon20@gmail.com">Email me</a>
-      <a class="btn btn-outline" href="Mesogboriwon-Adeolu-CV.pdf" download>Download CV ↓</a>
+      <div class="cv-dropdown" id="cvDropdown">
+        <button class="btn btn-outline" id="cvDropdownBtn" aria-haspopup="true" aria-expanded="false">Download CV ↓</button>
+        <div class="cv-menu" id="cvMenu"></div>
+      </div>
       <a class="btn btn-outline" href="https://linkedin.com/in/adeolu-mesogboriwon" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn btn-outline" href="https://github.com/adeolumesogboriwon1-ux" target="_blank" rel="noopener">GitHub</a>
     </div>
@@ -672,6 +690,26 @@ const posts = [
 ];
 
 /* ============================================================
+   EDIT YOUR CVs HERE. Add one object per CV version.
+   'file' must exactly match the PDF filename inside /CVs
+   (case-sensitive once pushed to GitHub — keep it consistent).
+   ============================================================ */
+   
+const cvs = [
+  { label: "Data Science & ML CV", file: "Resume/Data_Science_&_ML/Adeolu.ML_CV.pdf" },
+  { label: "Tutoring CV", file: "Resume/tutoring/Adeolu_Tutoring-CV.pdf" },
+  // Add more like this:
+  { label: "Data Analyst CV", file: "Resume/Data_Analyst/Adeolu_Data-CV.pdf" },
+  { label: "AI & Annotation CV", file: "Resume/AI_&_Annotation/Adeolu_AI_Annotation-CV.pdf" },
+  { label: "Design & Editor CV", file: "Resume/Graphic_Design_&_Video_Editor/ADEOLU_VideoEditor-CV.pdf" },
+  { label: "Business Analyst CV", file: "Resume/Business_Analyst/Adeolu_BusinessAnalyst-CV.pdf" },
+  { label: "Academic CV", file: "Resume/Academic_CV/ADEOLU_CanaAcademic-CV.pdf" },
+  { label: "Chemical & Process Engr CV", file: "Resume/Chemical_&_Process_Engr/Adeolu_ProcessEngineer-CV.pdf" },
+  { label: "Automation CV", file: "Resume/Automation/Adeolu_Automation-CV.pdf" },
+  { label: "2nd Automation CV", file: "Resume/Automation/Adeolu_Automation2-CV.pdf" },
+];
+
+/* ============================================================
    RENDER LOGIC — you shouldn't need to touch anything below
    ============================================================ */
 const grid = document.getElementById('postGrid');
@@ -783,6 +821,37 @@ themeToggle.addEventListener('click', () => {
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+/* CV dropdown — renders from the cvs array above */
+const cvMenu = document.getElementById('cvMenu');
+const cvDropdownBtn = document.getElementById('cvDropdownBtn');
+const cvDropdown = document.getElementById('cvDropdown');
+
+if(cvs.length === 0){
+  cvMenu.innerHTML = `<div class="cv-empty">No CVs added yet.</div>`;
+} else {
+  cvMenu.innerHTML = cvs.map(cv =>
+    `<a href="${cv.file}" download>${cv.label} ↓</a>`
+  ).join('');
+}
+
+cvDropdownBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isOpen = cvMenu.classList.toggle('open');
+  cvDropdownBtn.setAttribute('aria-expanded', isOpen);
+});
+document.addEventListener('click', (e) => {
+  if(!cvDropdown.contains(e.target)){
+    cvMenu.classList.remove('open');
+    cvDropdownBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    cvMenu.classList.remove('open');
+    cvDropdownBtn.setAttribute('aria-expanded', 'false');
+  }
+});
 
 renderFilters();
 renderGrid();
