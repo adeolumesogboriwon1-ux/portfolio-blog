@@ -140,7 +140,20 @@
 
 <section class="section reveal" id="activity">
   <div class="section-head"><h2>Recent Activity</h2><div class="tag mono">LinkedIn & X</div></div>
-  <div class="social-marquee">
+
+  <!-- LIVE FEED — auto-updates from Juicer.io, connected to LinkedIn/X -->
+  <div id="activityEmbed">
+    <ul class="juicer-feed" data-feed-id="adeolu-mesogboriwon"></ul>
+    <script type="text/javascript" src="https://www.juicer.io/embed/adeolu-mesogboriwon/embed-code.js" async defer></script>
+  </div>
+
+  <!--
+    Manual fallback cards are now OFF since the live Juicer feed
+    above is active. To bring them back, remove style="display:none"
+    below and edit the socialPosts array in script.js.
+    ============================================================
+  -->
+  <div class="social-marquee" id="activityManual" style="display:none;">
     <div class="social-track" id="socialTrack"></div>
   </div>
 </section>
